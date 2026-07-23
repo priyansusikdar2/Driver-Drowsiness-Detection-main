@@ -107,6 +107,41 @@ flowchart TD
     O --> B
     P --> B
 ```
+```mermaid
+```mermaid
+flowchart TD
+
+    A[Webcam Input] --> B[OpenCV Frame Capture]
+    B --> C[MediaPipe Face Landmarker]
+    C --> D[Extract Facial Landmarks]
+
+    D --> E[Eye Landmark Extraction]
+    D --> F[Mouth ROI Extraction]
+
+    E --> G["Eye Aspect Ratio EAR"]
+    F --> H[Image Preprocessing]
+
+    H --> I[CNN Mouth Classifier]
+
+    G --> J[Eye Status]
+    I --> K[Yawn Prediction]
+
+    J --> L[Decision Engine]
+    K --> L
+
+    L --> M{Driver Drowsy?}
+
+    M -->|Yes| N[Trigger Alarm]
+    M -->|No| O[Continue Monitoring]
+
+    N --> P[Display Warning]
+    O --> B
+    P --> B
+```
+
+
+
+```
 
 ---
 
