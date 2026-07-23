@@ -80,39 +80,32 @@ Driver-Drowsiness-Detection/
 ```mermaid
 flowchart TD
 
-A[Webcam Input]
+    A[Webcam Input] --> B[OpenCV Frame Capture]
+    B --> C[MediaPipe Face Landmarker]
+    C --> D[Extract Facial Landmarks]
 
-A --> B[OpenCV Frame Capture]
+    D --> E[Eye Landmark Extraction]
+    D --> F[Mouth ROI Extraction]
 
-B --> C[MediaPipe Face Landmarker]
+    E --> G["Eye Aspect Ratio EAR"]
+    F --> H[Image Preprocessing]
 
-C --> D[Extract Facial Landmarks]
+    H --> I[CNN Mouth Classifier]
 
-D --> E[Eye Landmark Extraction]
-D --> F[Mouth ROI Extraction]
+    G --> J[Eye Status]
+    I --> K[Yawn Prediction]
 
-E --> G[Eye Aspect Ratio (EAR)]
+    J --> L[Decision Engine]
+    K --> L
 
-F --> H[Image Preprocessing]
+    L --> M{Driver Drowsy?}
 
-H --> I[CNN Mouth Classifier]
+    M -->|Yes| N[Trigger Alarm]
+    M -->|No| O[Continue Monitoring]
 
-G --> J[Eye Status]
-
-I --> K[Yawn Probability]
-
-J --> L[Temporal Smoothing]
-
-K --> L
-
-L --> M{Drowsiness Detected?}
-
-M -- Yes --> N[Trigger Alarm]
-M -- No --> O[Continue Monitoring]
-
-N --> P[Display Warning]
-O --> B
-P --> B
+    N --> P[Display Warning]
+    O --> B
+    P --> B
 ```
 
 ---
