@@ -107,10 +107,10 @@ flowchart TD
     O --> B
     P --> B
 ```
-```mermaid
+## 🏗 System Architecture
+
 ```mermaid
 flowchart TD
-
     A[Webcam Input] --> B[OpenCV Frame Capture]
     B --> C[MediaPipe Face Landmarker]
     C --> D[Extract Facial Landmarks]
@@ -118,7 +118,7 @@ flowchart TD
     D --> E[Eye Landmark Extraction]
     D --> F[Mouth ROI Extraction]
 
-    E --> G["Eye Aspect Ratio EAR"]
+    E --> G[EAR Calculation]
     F --> H[Image Preprocessing]
 
     H --> I[CNN Mouth Classifier]
